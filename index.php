@@ -1,9 +1,9 @@
 <?php
 // Configuration
-$db_host = 'localhost';
-$db_username = 'your_username';
-$db_password = 'your_password';
-$db_name = 'your_database';
+$db_host = 'g8mh6ge01lu2z3n1.cbetxkdyhwsb.us-east-1.rds.amazonaws.com';
+$db_username = 'tlautbvaqck1i816';
+$db_password = 'pxu7uwnjq5682i53';
+$db_name = 'zmawt5kvnrrr33ip';
 
 // Create connection
 $conn = new mysqli($db_host, $db_username, $db_password, $db_name);
