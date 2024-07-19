@@ -1,19 +1,43 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Test Company</title>
-</head>
-<body>
-    <h1>TEST COMPANY</h1>
+<?php
+// Configuration
+$db_host = 'localhost';
+$db_username = 'your_username';
+$db_password = 'your_password';
+$db_name = 'your_database';
 
-    <ul>
-        <li><a href="">Home</a></li>
-        <li><a href="">About</a></li>
-        <li><a href="">Product</a></li>
-        <li><a href="">Contact</a></li>
-    </ul>
+// Create connection
+$conn = new mysqli($db_host, $db_username, $db_password, $db_name);
 
-</body>
-</html>
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Query to retrieve list of vehicles
+$sql = "SELECT * FROM vehicles";
+$result = $conn->query($sql);
+
+// Check if query was successful
+if (!$result) {
+    die("Query failed: " . $conn->error);
+}
+
+// Create HTML table to display list of vehicles
+echo "<table border='1'>";
+echo "<tr><th>Make</th><th>Model</th><th>Year</th><th>Color</th></tr>";
+
+// Loop through each row of the result set
+while ($row = $result->fetch_assoc()) {
+    echo "<tr>";
+    echo "<td>" . $row['make'] . "</td>";
+    echo "<td>" . $row['model'] . "</td>";
+    echo "<td>" . $row['year'] . "</td>";
+    echo "<td>" . $row['color'] . "</td>";
+    echo "</tr>";
+}
+
+echo "</table>";
+
+// Close connection
+$conn->close();
+?>
